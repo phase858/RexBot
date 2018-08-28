@@ -1,6 +1,6 @@
 # RexBot
 
-A silly and generally useless but expandable discord bot.
+A silly and generally useless but expandable(for simple commands) discord bot.
 # Requirements
 .NET Core 2.0
 # Configuration
