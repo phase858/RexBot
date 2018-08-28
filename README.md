@@ -26,7 +26,7 @@ A silly and generally useless but expandable(for simple commands) discord bot.
 - ``dieroll``: Rolls a die with the specified ammount of sides,
 - ``reload``: Currently not working, reloads the custom command files.
 # Custom Commands
-Rexbot has a custom command system. Custom commands are json files that specify a commands category, name and output options. A commands category must be in ``AllowedCategories`` for it to load. Custom commands are loaded from the ``commands`` folder within the ``config`` folder.
+Rexbot has a custom command system. Custom commands are json files that specify a commands category, name and output options. A commands category must be in ``AllowedCategories`` for it to load. Custom commands are loaded from the ``Commands`` folder within the ``Config`` folder.
 ```json
 {
   "name": "glomp",
