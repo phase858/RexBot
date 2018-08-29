@@ -28,13 +28,12 @@
 Rexbot has a custom command system. Custom commands are json files that specify a commands category, name and output options. A commands category must be in ``AllowedCategories`` for it to load. Custom commands are loaded from the ``Commands`` folder within the ``Config`` folder.
 ```json
 {
-  "name": "glomp",
-  "Category": "silly",
+  "name": "testcommand",
+  "Category": "testing",
   "Content": [
-    "*_USERNAME_ glomps _INPUT_ through a wall!*",
-    "*_USERNAME_ ruptures _INPUT_'s spleen with a powerful glomp!*",
-    "*_USERNAME_ tries to glomp _INPUT_ but accidentally dives in front of a car.*",
-    "*_USERNAME_ glomps at breakneck speed, breaking _INPUT_'s neck*"
+    "Text.",
+    "More text.",
+    "Even more text."
   ]
 }
 ```
