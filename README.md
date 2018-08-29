@@ -1,15 +1,15 @@
 # RexBot
- A silly and generally useless but expandable(for simple commands) discord bot. Credits to Pat for the glomp command idea and options.
+ A silly and generally useless but expandable(for simple commands) discord bot. Credits to Pat for the glomp command idea and text options.
 # Requirements
 .NET Core 2.0
 # Configuration
 ## RexBot.conf
-  - ``key``: the bot API key you got from discord.
+  - ``key``: The bots token.
   - ``AllowedCategories``: The custom command categories you choose to allow.
   - ``DisallowedCategories``: The custom command categories you choose not to allow.
   - ``AllowHardcoded``: Toggles 2 of the 4 of the hardcoded commands, flip and dieroll.
   - ``ControlChannel``: The channel that reload has to be used in, currently useless due to the state of the reload command.
-  - ``"Name"``: The bots name that can be used in custom commands **This does not set the bots nickname or actual username.**
+  - ``Name``: The bots name that can be used in custom commands **This does not set the bots nickname or username.**
   - ``Prefix``: The prefix commands should start with.
 - ``DisabledCommands``: Allows commands to disabled individualy, a more fine grained alternative to ``DisallowedCategories`` and ``AllowHardcoded``.
 ## Subs.conf
@@ -28,13 +28,12 @@
 Rexbot has a custom command system. Custom commands are json files that specify a commands category, name and output options. A commands category must be in ``AllowedCategories`` for it to load. Custom commands are loaded from the ``Commands`` folder within the ``Config`` folder.
 ```json
 {
-  "name": "glomp",
-  "Category": "silly",
+  "name": "testcommand",
+  "Category": "testing",
   "Content": [
-    "*_USERNAME_ glomps _INPUT_ through a wall!*",
-    "*_USERNAME_ ruptures _INPUT_'s spleen with a powerful glomp!*",
-    "*_USERNAME_ tries to glomp _INPUT_ but accidentally dives in front of a car.*",
-    "*_USERNAME_ glomps at breakneck speed, breaking _INPUT_'s neck*"
+    "Text.",
+    "More text.",
+    "Even more text."
   ]
 }
 ```
