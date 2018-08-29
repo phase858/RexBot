@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace RexBot.Utilities
 {
@@ -25,55 +26,19 @@ namespace RexBot.Utilities
     }
     public static class Utils
     {
-         public static bool IsTrue(string input)
-        {
-            if (input == "true" || input == "True")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public static bool CategoryAllowed(string input)
         {
-            bool returnValue = false;
-            foreach (string command in Config.AllowedCategories)
-            {
-                if (command == input)
-                {
-                    returnValue = true;
-                }
-            }
-            return returnValue;
+            return Config.AllowedCategories.Contains(input);
         }
 
         public static bool CommandDisabled(string input)
         {
-            bool match = false;
-            foreach (string command in Config.DisabledCommands)
-            {
-                if (command == input)
-                {
-                    match = true;
-                }
-            }
-            return match;
+            return Config.DisabledCommands.Contains(input);
         }
 
         public static bool CategoryDisallowed(string input)
         {
-            bool returnValue = false;
-            foreach (string command in Config.DisallowedCategories)
-            {
-                if (command == input)
-                {
-                    returnValue = true;
-                }
-            }
-            return returnValue;
+            return Config.DisallowedCategories.Contains(input);
         }
     }
 
@@ -85,9 +50,9 @@ namespace RexBot.Utilities
 
         public static string Key = config.Key;
 
-        public static string[] AllowedCategories = config.AllowedCategories;
+        public static List<string> AllowedCategories = config.AllowedCategories.ToList();
 
-        public static string[] DisallowedCategories = config.DisallowedCategories;
+        public static List<string> DisallowedCategories = config.DisallowedCategories.ToList();
 
         public static bool AllowHardcoded = config.AllowHardcoded;
 
@@ -97,6 +62,6 @@ namespace RexBot.Utilities
 
         public static string ControlChannel = config.ControlChannel;
 
-        public static string[] DisabledCommands = config.DisabledCommands;
+        public static List<string> DisabledCommands = config.DisabledCommands.ToList();
     }
 }

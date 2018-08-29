@@ -28,12 +28,16 @@ namespace RexBot.CommandContent
 
         Dictionary<char, string> subsitutes = new Dictionary<char, string>();
 
-         Random rnd = new Random();
+        List<string> commandList = new List<string>();
+
+        Random rnd = new Random();
 
         string name = Config.Name;
 
     public void LoadData()
         {
+            int removeCounter = 0;
+
             foreach (string line in subsFile)
             {
                 string[] splitLine = line.Split('|');
@@ -66,6 +70,28 @@ namespace RexBot.CommandContent
                     Console.WriteLine("Commands {0} has no valid category, skiping.\n", name);
                 }
 
+            }
+
+            foreach (KeyValuePair<string, Command> entry in commands)
+            {
+                name = entry.Value.Name;
+                commandList.Add(name);
+            }
+
+            if (Config.AllowHardcoded)
+            {
+                commandList.Add("flip");
+                commandList.Add("dieroll");
+            }
+
+            for (int i = 0; i < commandList.Count; i++)
+            {
+                string name = commandList[i];
+                if (Utils.CommandDisabled(name))
+                {
+                    int index = commandList.IndexOf(name);
+                    commandList.RemoveAt(index);
+                }
             }
         }
 
@@ -138,20 +164,6 @@ namespace RexBot.CommandContent
 
         public string List()
         {
-            List<string> commandList = new List<string>();
-
-            foreach (KeyValuePair<string, Command> entry in commands)
-            {
-                name = entry.Value.Name;
-                commandList.Add(name);
-            }
-
-            if (Config.AllowHardcoded)
-            {
-                commandList.Add("flip");
-                commandList.Add("dieroll");
-            }
-
             string commandListStr = string.Join(", ", commandList.ToArray());
 
             return "**The following commands are available: **" + commandListStr;
