@@ -4,12 +4,12 @@
 .NET Core 2.0
 # Configuration
 ## RexBot.conf
-  - ``key``: the bot API key you got from discord.
+  - ``key``: The bots token.
   - ``AllowedCategories``: The custom command categories you choose to allow.
   - ``DisallowedCategories``: The custom command categories you choose not to allow.
   - ``AllowHardcoded``: Toggles 2 of the 4 of the hardcoded commands, flip and dieroll.
   - ``ControlChannel``: The channel that reload has to be used in, currently useless due to the state of the reload command.
-  - ``"Name"``: The bots name that can be used in custom commands **This does not set the bots nickname or actual username.**
+  - ``Name``: The bots name that can be used in custom commands **This does not set the bots nickname or username.**
   - ``Prefix``: The prefix commands should start with.
 - ``DisabledCommands``: Allows commands to disabled individualy, a more fine grained alternative to ``DisallowedCategories`` and ``AllowHardcoded``.
 ## Subs.conf
