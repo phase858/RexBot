@@ -36,8 +36,6 @@ namespace RexBot.CommandContent
 
     public void LoadData()
         {
-            int removeCounter = 0;
-
             foreach (string line in subsFile)
             {
                 string[] splitLine = line.Split('|');
