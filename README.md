@@ -1,5 +1,5 @@
 # RexBot
- A silly and generally useless but expandable(for simple commands) discord bot. Credits to Pat for the glomp command idea and options.
+ A silly and generally useless but expandable(for simple commands) discord bot. Credits to Pat for the glomp command idea and text options.
 # Requirements
 .NET Core 2.0
 # Configuration
