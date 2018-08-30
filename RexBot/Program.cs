@@ -43,8 +43,15 @@ namespace DiscordBot
             if (message.Content.HasTrigger())
             {
                 MessageInfo messageInfo = commands.ParseMessage(message.Content, message.Author.Mention, message.Channel.Name);
-                string commandReturn = commands.TryCommand(messageInfo);
-                await message.Channel.SendMessageAsync(commandReturn);
+                SendInfo commandReturn = commands.TryCommand(messageInfo);
+                if (commandReturn.File)
+                {
+                    await message.Channel.SendFileAsync(commandReturn.Content);
+                }
+                else
+                {
+                    await message.Channel.SendMessageAsync(commandReturn.Content);
+                }
             }
         }
 

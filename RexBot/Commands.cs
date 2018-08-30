@@ -24,6 +24,12 @@ namespace RexBot.Commands
         public string Channel { get; set; }
     }
 
+    public class SendInfo
+    {
+        public string Content { get; set; }
+        public bool File { get; set; }
+    }
+
     public static class Extensions
     {
         public static string KeywordReplace(this string input, string author, string content)
@@ -50,7 +56,7 @@ namespace RexBot.Commands
 
         string[] subsFile = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Subs.conf"));
 
-        string[] commandFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Commands"));
+        string[] commandFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Commands"), "*.json");
 
         Dictionary<string, Command> commands = new Dictionary<string, Command>();
 
@@ -110,6 +116,9 @@ namespace RexBot.Commands
                 commandList.Add("dieroll");
             }
 
+            commandList.Add("reload");
+            commandList.Add("list");
+
             for (int i = 0; i < commandList.Count; i++)
             {
                 string name = commandList[i];
@@ -154,10 +163,10 @@ namespace RexBot.Commands
             return result;
         }
 
-        public string TryCommand(MessageInfo message)
+        public SendInfo TryCommand(MessageInfo message)
         {
             string name = message.Command;
-            string returnText;
+            SendInfo returnText;
            if (commandList.Contains(name))
             {
                 switch (name)
@@ -182,13 +191,18 @@ namespace RexBot.Commands
             }
             else
             {
-                return "Command does not exsit or is not enabled.";
+                SendInfo info = new SendInfo
+                {
+                    Content = "Command does not exist or is not enabled.",
+                    File = false
+                };
+                return info;
             }
 
 
         }
 
-        public string TryCC(MessageInfo message)
+        public SendInfo TryCC(MessageInfo message)
         {
             string botName = Config.Name;
             Command command = commands[message.Command];
@@ -196,7 +210,12 @@ namespace RexBot.Commands
             int contentLength = command.Content.Length;
             if (contentLength < 1)
             {
-                return "No options for command";
+                SendInfo info = new SendInfo
+                {
+                    Content = "No options for command",
+                    File = false
+                };
+                return info;
             }
             else
             {
@@ -205,22 +224,58 @@ namespace RexBot.Commands
 
                 if (contentText.Contains("_CONTENT_") & message.Content == "PlAcEhOlDeReXt")
                 {
-                    return "Invalid usage.";
+                    SendInfo info = new SendInfo
+                    {
+                        Content = "Invalid usage.",
+                        File = false
+                    };
+                    return info;
+                }
+                else if (contentText == "_IMAGE_")
+                {
+                    string image = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Commands", message.Command + ".png");
+                    if (File.Exists(image))
+                    {
+                        SendInfo info = new SendInfo
+                        {
+                            Content = image,
+                            File = true
+                        };
+                        return info;
+                    }
+                    else
+                    {
+                        SendInfo info = new SendInfo
+                        {
+                            Content = "Image not found",
+                            File = false
+                        };
+                        return info;
+                    }
                 }
                 else
                 {
-                    return contentText.KeywordReplace(message.Author, message.Content);
+                    SendInfo info = new SendInfo
+                    {
+                        Content = contentText.KeywordReplace(message.Author, message.Content),
+                        File = false
+                    };
+                    return info;
                 }
 
             }
         }
-    
 
-        public string Flip(string input)
+        public SendInfo Flip(string input)
         {
             if (input == "PlAcEhOlDeReXt")
             {
-                return "Invalid usage.";
+                SendInfo info = new SendInfo
+                {
+                    Content = "Invalid usage.",
+                    File = false
+                };
+                return info;
             }
             else
             {
@@ -239,41 +294,72 @@ namespace RexBot.Commands
                     }
                     index++;
                 }
-                return output;
+                SendInfo info = new SendInfo
+                {
+                    Content = output,
+                    File = false
+                };
+                return info;
             }
         }
 
-        public string DieRoll(string input)
+        public SendInfo DieRoll(string input)
         {
             int sides;
             bool isNumeric = int.TryParse(input, out sides);
             if (isNumeric && sides > 1)
             {
-                return "**Rolled: " + randGen.Next(1, sides).ToString() + "**";
+                SendInfo info = new SendInfo
+                {
+                    Content = "**Rolled: " + randGen.Next(1, sides).ToString() + "**",
+                    File = false
+                };
+                return info;
             }
             else
             {
-                return "Please try again.";
+                SendInfo info = new SendInfo
+                {
+                    Content = "Please try again.",
+                    File = false
+                };
+                return info;
             }
         }
 
-        public string List()
+        public SendInfo List()
         {
             string commandListStr = string.Join(", ", commandList.ToArray());
 
-            return "**The following commands are available: **" + commandListStr;
+            SendInfo info = new SendInfo
+            {
+                Content = "**The following commands are available: **" + commandListStr,
+                File = false
+            };
+            return info;
         }
 
-        public string Reload(MessageInfo message)
+        public SendInfo Reload(MessageInfo message)
         {
             if (message.Channel == Config.ControlChannel)
             {
                 LoadData();
-                return "Custom commands reloaded.";
+                SendInfo info = new SendInfo
+                {
+                    Content = "Custom commands reloaded.",
+                    File = false
+                };
+                return info;
+
             }
             else
             {
-                return "Message not sent in bot control channel.";
+                SendInfo info = new SendInfo
+                {
+                    Content = "Message not sent in bot control channel.",
+                    File = false
+                };
+                return info;
             }
         }
     }
