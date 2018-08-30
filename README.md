@@ -4,7 +4,7 @@
 .NET Core 2.0
 # Configuration
 ## RexBot.conf
-  - ``key``: The bots token.
+  - ``Token``: The bots token.
   - ``AllowedCategories``: The custom command categories you choose to allow.
   - ``DisallowedCategories``: The custom command categories you choose not to allow.
   - ``AllowHardcoded``: Toggles 2 of the 4 of the hardcoded commands, flip and dieroll.
@@ -38,6 +38,6 @@ Rexbot has a custom command system. Custom commands are json files that specify 
 }
 ```
 The above is an example of a custom command. There are multiple keywords that will be replace by the bot you can use to get use interaction for commands, they are as follows:
-- ``_USERNAME_`` is replaced by the senders username.
-- ``_INPUT_`` is replace by whatever follows the command.
-- ``_BOTNAME_`` is replace by the bots name as set in the config.
+- ``_AUTHOR_`` is replaced by the senders username.
+- ``_CONTENT_`` is replace by whatever follows the command.
+- ``_BOT_`` is replace by the bots name as set in the config.
