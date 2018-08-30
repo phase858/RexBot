@@ -1,5 +1,5 @@
 ﻿{
   "name": "botemote",
   "category": "say",
-  "content": ["*_BOTNAME_ _INPUT_*"]
+  "content": ["*_BOT_ _CONTENT_*"]
 }

@@ -1,5 +1,5 @@
 ﻿{
   "name": "useremote",
   "category": "say",
-  "content" : ["*_USERNAME_ _INPUT_*"]
+  "content" : ["*_AUTHOR_ _CONTENT_*"]
 }

@@ -2,9 +2,9 @@
   "name" :  "roll",
   "Category": "themed",
   "Content": [
-    "*_BOTNAME_ rolls happily!*",
-    "*_BOTNAME_ obeys and rolls.*",
-    "*_BOTNAME_ flops down and rolls over.*",
-    "*_BOTNAME_ does a barrel roll.*"
+    "*_BOT_ rolls happily!*",
+    "*_BOT_ obeys and rolls.*",
+    "*_BOT_ flops down and rolls over.*",
+    "*_BOT_ does a barrel roll.*"
   ]
 }

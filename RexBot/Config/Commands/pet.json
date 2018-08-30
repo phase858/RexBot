@@ -2,9 +2,9 @@
   "name" : "pet",
   "Category": "themed",
   "Content": [
-    "*_BOTNAME_ wags his tail happily!*",
-    "*_BOTNAME_ lets out a quiet bark.*",
-    "*_BOTNAME_ looks at you happily*",
-    "*_BOTNAME_ wags his tail and looks at you happily!*"
+    "*_BOT_ wags his tail happily!*",
+    "*_BOT_ lets out a quiet bark.*",
+    "*_BOT_ looks at you happily*",
+    "*_BOT_ wags his tail and looks at you happily!*"
   ]
 }

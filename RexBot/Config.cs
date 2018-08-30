@@ -10,7 +10,7 @@ namespace RexBot.Utilities
 {
     class Conf
     {
-        public string Key { get; set; }
+        public string Token { get; set; }
         public string[] AllowedCategories { get; set; }
         public string[] DisallowedCategories { get; set; }
         public bool AllowHardcoded { get; set; }
@@ -20,11 +20,13 @@ namespace RexBot.Utilities
         public string ControlChannel { get; set; }
         public string[] DisabledCommands { get; set; }
     }
-    class ConfigSettings
-    {
 
+    static class Utils
+    {
+       
     }
-    public static class Utils
+
+    static class Config
     {
         public static bool CategoryAllowed(string input)
         {
@@ -40,15 +42,12 @@ namespace RexBot.Utilities
         {
             return Config.DisallowedCategories.Contains(input);
         }
-    }
 
-    static class Config
-    {
         static string configFile = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "RexBot.conf"));
 
         static Conf config = JsonConvert.DeserializeObject<Conf>(configFile);
 
-        public static string Key = config.Key;
+        public static string Key = config.Token;
 
         public static List<string> AllowedCategories = config.AllowedCategories.ToList();
 

@@ -1,5 +1,5 @@
 ﻿{
   "name": "botsay",
   "category" : "say",
-  "content": ["**_INPUT_**"]
+  "content": ["**_CONTENT_**"]
 }
