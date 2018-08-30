@@ -41,3 +41,4 @@ The above is an example of a custom command. There are multiple keywords that wi
 - ``_AUTHOR_`` is replaced by the senders username.
 - ``_CONTENT_`` is replace by whatever follows the command.
 - ``_BOT_`` is replace by the bots name as set in the config.
+- ``_IMAGE_`` makes the command display an image, to use this keyword, you must one have a png that shares the name of the command and can only have one option.
