@@ -9,7 +9,7 @@
   - ``DisallowedCategories``: The custom command categories you choose not to allow.
   - ``AllowHardcoded``: Toggles 2 of the 4 of the hardcoded commands, flip and dieroll.
   - ``ControlChannel``: The channel that reload has to be used in, currently useless due to the state of the reload command.
-  - ``Name``: The bots name that can be used in custom commands **This does not set the bots nickname or username.**
+  - ``Name``: The bots name that can be used in custom commands. **This does not set the bots nickname or username.**
   - ``Prefix``: The prefix commands should start with.
 - ``DisabledCommands``: Allows commands to disabled individualy, a more fine grained alternative to ``DisallowedCategories`` and ``AllowHardcoded``.
 ## Subs.conf
@@ -41,3 +41,4 @@ The above is an example of a custom command. There are multiple keywords that wi
 - ``_AUTHOR_`` is replaced by the senders username.
 - ``_CONTENT_`` is replace by whatever follows the command.
 - ``_BOT_`` is replace by the bots name as set in the config.
+- ``_IMAGE_`` makes the command display an image, to use this keyword, you must one have a png that shares the name of the command and can only have one option.
