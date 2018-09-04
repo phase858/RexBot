@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RexBot.Utilities;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace RexBot.Commands
 {
@@ -204,10 +205,13 @@ namespace RexBot.Commands
 
         public SendInfo TryCC(MessageInfo message)
         {
+            Regex isFileCommand = new Regex(@"_FILE[^_]+_");
+            Regex extractName = new Regex(@"(?<=:)[^_]+");         
             string botName = Config.Name;
             Command command = commands[message.Command];
             string category = command.Category;
             int contentLength = command.Content.Length;
+            int choice = rnd.Next(0, contentLength - 1);
             if (contentLength < 1)
             {
                 SendInfo info = new SendInfo
@@ -219,8 +223,16 @@ namespace RexBot.Commands
             }
             else
             {
-                int choice = rnd.Next(0, contentLength - 1);
+
                 string contentText = command.Content[choice];
+                Console.WriteLine("options: " + command.Content.Length);
+                Console.WriteLine("chose: ", choice);
+                Match isFile = isFileCommand.Match(contentText);
+
+                if (isFile.Success) {
+                    Console.WriteLine("Commands is a file command.");
+                    Console.WriteLine(isFile.Value);
+                }
 
                 if (contentText.Contains("_CONTENT_") & message.Content == "PlAcEhOlDeReXt")
                 {
@@ -231,14 +243,22 @@ namespace RexBot.Commands
                     };
                     return info;
                 }
-                else if (contentText == "_IMAGE_")
+                else if (isFile.Success)
                 {
-                    string image = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Commands", message.Command + ".png");
-                    if (File.Exists(image))
+                    string files = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Files");
+                    string fileName = string.Empty;
+                    string matchText = isFile.Value;
+                    Match name = extractName.Match(matchText);
+                    if (name.Success)
+                    {
+                        fileName = name.Value;
+                    }
+                    string filePath = Path.Combine(files, fileName);
+                    if (File.Exists(filePath))
                     {
                         SendInfo info = new SendInfo
                         {
-                            Content = image,
+                            Content = filePath,
                             File = true
                         };
                         return info;
@@ -247,7 +267,7 @@ namespace RexBot.Commands
                     {
                         SendInfo info = new SendInfo
                         {
-                            Content = "Image not found",
+                            Content = "File does not exist.",
                             File = false
                         };
                         return info;

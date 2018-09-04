@@ -2,6 +2,7 @@
   "name": "camera",
   "Category": "testing",
   "Content": [
-    "_IMAGE_"
+    "_FILE:camera.png_",
+    "_FILE:camera1.png_"
   ]
 }
