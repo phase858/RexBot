@@ -41,4 +41,4 @@ The above is an example of a custom command. There are multiple keywords that wi
 - ``_AUTHOR_``:The senders username.
 - ``_CONTENT_``: Any text following the command name.
 - ``_BOT_``: The bots name as set in the config.
-- ``_IMAGE_``: Instead of replacing text, this will make the command attach an image in place of text. In order for this to work, you need to have a ``png`` file that is named the commands name. See the ``camera`` command for an example.
+- ``_IMAGE_``: Instead of replacing text, this will make the command attach an image in place of text. In order for this to work, you need to have a png file that is named the commands name. See the ``camera`` command for an example.
