@@ -37,8 +37,8 @@ Rexbot has a custom command system. Custom commands are json files that specify 
   ]
 }
 ```
-The above is an example of a custom command. There are multiple keywords that will be replace by the bot you can use to get use interaction for commands, they are as follows:
-- ``_AUTHOR_`` is replaced by the senders username.
-- ``_CONTENT_`` is replace by whatever follows the command.
-- ``_BOT_`` is replace by the bots name as set in the config.
-- ``_IMAGE_`` makes the command display an image, to use this keyword, you must one have a png that shares the name of the command and can only have one option.
+The above is an example of a custom command. There are multiple keywords that will be replaced by the bot you can use to for extra interaction with commands, they are as follows:
+- ``_AUTHOR_``:The senders username.
+- ``_CONTENT_``: Any text following the command name.
+- ``_BOT_``: The bots name as set in the config.
+- ``_IMAGE_``: Instead of replacing text, this will make the command attach an image in place of text. In order for this to work, you need to have a png file that is named the commands name. See the ``camera`` command for an example.
