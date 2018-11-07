@@ -1,7 +1,7 @@
 # RexBot
  A silly and generally useless but expandable(for simple commands) discord bot. Credits to Pat for the glomp command idea and text options.
 # Requirements
-.NET Core 2.0
+.NET Core
 # Configuration
 ## RexBot.conf
   - ``Token``: The bots token.
@@ -22,7 +22,7 @@
 # Hardcoded Commands
 - ``list``: Lists the available commands.
 - ``flip``: Subsitutes text with alternative characters to make it look upside down.
-- ``dieroll``: Rolls a die with the specified ammount of sides,
+- ``dieroll``: Rolls a die with the specified ammount of sides. Dice notation works as well.
 - ``reload``: Currently not working, reloads the custom command files.
 # Custom Commands
 Rexbot has a custom command system. Custom commands are json files that specify a commands category, name and output options. A commands category must be in ``AllowedCategories`` for it to load. Custom commands are loaded from the ``Commands`` folder within the ``Config`` folder.
