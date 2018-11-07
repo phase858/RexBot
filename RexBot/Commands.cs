@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RexBot.Utilities;
 using Newtonsoft.Json;
+using RogueSharp.DiceNotation;
 
 namespace RexBot.Commands
 {
@@ -305,22 +306,21 @@ namespace RexBot.Commands
 
         public SendInfo DieRoll(string input)
         {
-            int sides;
-            bool isNumeric = int.TryParse(input, out sides);
-            if (isNumeric && sides > 1)
+            try
             {
+                string result = Dice.Roll(input).ToString();
                 SendInfo info = new SendInfo
                 {
-                    Content = "**Rolled: " + randGen.Next(1, sides).ToString() + "**",
+                    Content = "**Rolled: " + result + "**",
                     File = false
                 };
                 return info;
             }
-            else
+            catch (ArgumentException e)
             {
                 SendInfo info = new SendInfo
                 {
-                    Content = "Please try again.",
+                    Content = "Invalid dice expression.",
                     File = false
                 };
                 return info;
