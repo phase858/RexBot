@@ -79,6 +79,14 @@ namespace RexBot.Commands
                 subsitutes.Add(main, sub);
             }
 
+            foreach (string line in subsFile)
+            {
+                string[] splitLine = line.Split('|');
+                char main = splitLine[0][0];
+                string sub = splitLine[1];
+                subsitutes.Add(char.Parse(sub), main.ToString());
+            }
+
             foreach (string file in commandFiles)
             {
                 string content = File.ReadAllText(file);
