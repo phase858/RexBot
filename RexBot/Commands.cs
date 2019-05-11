@@ -84,7 +84,10 @@ namespace RexBot.Commands
                 string[] splitLine = line.Split('|');
                 char main = splitLine[0][0];
                 string sub = splitLine[1];
-                subsitutes.Add(char.Parse(sub), main.ToString());
+                if (!subsitutes.ContainsKey(char.Parse(sub)))
+                {
+                    subsitutes.Add(char.Parse(sub), main.ToString());
+                }
             }
 
             foreach (string file in commandFiles)
